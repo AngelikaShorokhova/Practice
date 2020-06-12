@@ -16,18 +16,6 @@ namespace pr_4
                     Console.WriteLine("Введено не число");
             } while (!ok);
         }
-        static void InputNumberInt(string s, out int n)
-        {
-            bool ok;
-            do
-            {
-                Console.WriteLine(s);
-                string stroka = Console.ReadLine();
-                ok = int.TryParse(stroka, out n);
-                if (!ok)
-                    Console.WriteLine("Введено не число");
-            } while (!ok);
-        }
         static double Factorial(int x)
         {
             if (x == 0)
@@ -68,8 +56,7 @@ namespace pr_4
             Console.WriteLine("Задание №4."+Environment.NewLine+ "Вычислить бесконечную сумму с заданной точностью e (e>0)." + Environment.NewLine + "Считать, что требуемая точность достигнута, если вычислена сумма нескольких первых слагаемых" + Environment.NewLine + "и очередное слагаемое оказалось по модулю меньше, чем е, это и все последующие слагаемые можно уже не учитывать.");
             double e;
             InputNumberDouble("Введите е:", out e);
-            int i;
-            InputNumberInt("Введите i:", out i);
+            int i = 0;
             Console.WriteLine(Result(e, i) + " ");
             if (Console.ReadLine() != "0")
                 Main(args);

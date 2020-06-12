@@ -91,11 +91,11 @@ namespace pr_6
         static void Main(string[] args)
         {
             Console.WriteLine("Задание №6.");
-            int N = 10;
-            int M = 5;
-            double L = 3;
+            int N;
+            int M;
+            double L= 3;
             InputNumberInt("N", out N);
-            InputNumberInt("M", out N);
+            InputNumberInt("M", out M);
             Fastest(1, 1, 1, N, M, L);
             Console.ReadLine();
         }
