@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_10
 {
     public class Graph
     {
-        int[,] vertices;
-        int[,] matrix;
+        private int[,] vertices;
+        private int[,] matrix;
 
         public int[,] Vertices
         {
@@ -22,8 +23,8 @@ namespace pr_10
         }
         public Graph()
         {
-            Vertices = default;
-            Matrix = default;
+            Vertices = null;
+            Matrix = null;
         }
         public Graph(int[,] v, int[,] m)
         {
@@ -35,24 +36,30 @@ namespace pr_10
             Vertices = MakeVertices(count);
             Matrix = MakeMatrix(count);
         }
+
+        [ExcludeFromCodeCoverage]
         public void ShowGraph()
         {
-            for (int i = 0; i < Vertices.GetLength(0); i++)
+            if (Vertices.GetLength(0) == 0)
+                Console.WriteLine("");
+            else 
             {
-                Console.Write("Вершина №" + Vertices[i, 0] + ", значение:" + Vertices[i, 1] + " ");
+                for (int i = 0; i < Vertices.GetLength(0); i++)
+                {
+                    Console.Write("Вершина №" + Vertices[i, 0] + ", значение:" + Vertices[i, 1] + " ");
+                    Console.WriteLine();
+                }
                 Console.WriteLine();
-            }
-            Console.WriteLine();
-            Console.WriteLine("Матрица смежности:");
-            for (int i = 0; i < Matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < Matrix.GetLength(1); j++)
-                    Console.Write(String.Format("{0,3}", Matrix[i, j]));
-                Console.WriteLine();
-            }
-
+                Console.WriteLine("Матрица смежности:");
+                for (int i = 0; i < Matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Matrix.GetLength(1); j++)
+                        Console.Write(String.Format("{0,3}", Matrix[i, j]));
+                    Console.WriteLine();
+                }
+            }            
         }
-        private int[,] MakeVertices(int n)
+        public int[,] MakeVertices(int n)
         {
             Random random = new Random();
             int[,] mas = new int[n, 2];
@@ -60,11 +67,11 @@ namespace pr_10
                 mas[j, 0] = j + 1;
             for (int i = 0; i < mas.GetLength(0); i++)
             {
-                mas[i, 1] = random.Next(0, 10);
+                mas[i, 1] = random.Next(0,11);
             }
             return mas;
         }
-        private int[,] MakeMatrix(int n)
+        public int[,] MakeMatrix(int n)
         {
             Random random = new Random();
             int[,] mas = new int[n + 1, n + 1];
@@ -135,13 +142,47 @@ namespace pr_10
             }
             Vertices = vertices;
         }
-        static void DeleteMas(ref int[,] mas, int number)
+        public static void DeleteMas(ref int[,] mas, int number)
         {
             int[,] masDop = new int[mas.GetLength(0) - 1, mas.GetLength(1)];
             Array.Copy(mas, masDop, number * mas.GetLength(1));
             Array.Copy(mas, (number + 1) * mas.GetLength(1), masDop, number * mas.GetLength(1), mas.GetLength(1) * (masDop.GetLength(0) - number));
             mas = new int[mas.GetLength(0) - 1, mas.GetLength(1)];
             Array.Copy(masDop, mas, masDop.GetLength(0) * masDop.GetLength(1));
+        }
+        public override bool Equals(object obj)
+        {
+            Graph graph = (Graph)obj;
+            if(this.Vertices.GetLength(0)!= graph.Vertices.GetLength(0)|| this.Vertices.GetLength(1) != graph.Vertices.GetLength(1)||
+                this.Matrix.GetLength(0) != graph.Matrix.GetLength(0)|| this.Matrix.GetLength(1) != graph.Matrix.GetLength(1))
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < Matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Matrix.GetLength(1); j++)
+                    {
+                        if (this.Matrix[i, j] != graph.Matrix[i, j])
+                        {
+                            return false;
+                        }
+                    }
+                }
+                for (int i = 0; i < Vertices.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Vertices.GetLength(1); j++)
+                    {
+                        if (this.Matrix[i, j] != graph.Matrix[i, j])
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            return true;
         }
     }
 }

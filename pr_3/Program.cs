@@ -1,21 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_3
 {
-    class Program
+    public class Program
     {
-        public static void InputNumberDouble(string s, out double n)
-        {
-            bool ok;
-            do
-            {
-                Console.WriteLine("Введите координату х:");
-                string stroka = Console.ReadLine();
-                ok = double.TryParse(stroka, out n);
-                if (!ok)
-                    Console.WriteLine("Введено не число");
-            } while (!ok);
-        }
         public static bool Area(double x, double y)
         {
             bool ok;
@@ -24,7 +13,8 @@ namespace pr_3
             else ok = false;
             return ok;
         }
-        protected static void Main(string[] args)
+        [ExcludeFromCodeCoverage]
+        static void Main(string[] args)
         {
             Console.WriteLine("Задание №3."+Environment.NewLine+"Даны действительные числа х, у. Определить, принадлежит ли точка с координатами х, у заштрихованной части плоскости.");
             double x, y;

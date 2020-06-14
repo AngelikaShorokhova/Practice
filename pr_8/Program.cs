@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace pr_8
 {
-    class Program
+    public class Program
     {
+        [ExcludeFromCodeCoverage]
         static int[,] FormTest(int count)
         {
             int[,] mas = new int[count, count];
@@ -22,6 +24,7 @@ namespace pr_8
             }
             return mas;
         }
+        [ExcludeFromCodeCoverage]
         static void InputNumberInt(string str, int n, out int k)
         {
             bool ok;
@@ -44,7 +47,7 @@ namespace pr_8
                 }
             } while (!ok || !ok1);
         }
-        static List<List<int>> FindCountOfColors(int[,] mas)
+        public static List<List<int>> FindCountOfColors(int[,] mas)
         {
             bool[] check = new bool[mas.GetLength(0)];
             List<List<int>> colors = new List<List<int>>();
@@ -70,7 +73,7 @@ namespace pr_8
             }
             return colors;
         }
-        static List<List<int>> MakeMoreColors(List<List<int>> c, int k)
+        public static List<List<int>> MakeMoreColors(List<List<int>> c, int k)
         {
             int count = c.Count;
             List<List<int>> c1 = new List<List<int>>();
@@ -90,6 +93,7 @@ namespace pr_8
             }
             return c1;
         }
+        [ExcludeFromCodeCoverage]
         static void ShowList(List<List<int>> c)
         {
             Console.WriteLine(Environment.NewLine + "Цвета   Вершины");
@@ -105,6 +109,7 @@ namespace pr_8
                 Console.WriteLine();
             }
         }
+        [ExcludeFromCodeCoverage]
         static void ShowMas(int[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -115,6 +120,7 @@ namespace pr_8
             }
             Console.WriteLine();
         }
+        [ExcludeFromCodeCoverage]
         static void Main()
         {
             Console.Clear();
@@ -125,23 +131,20 @@ namespace pr_8
             ShowMas(matrix);
             Console.WriteLine(" ");
             int k;
-            InputNumberInt("K:", matrix.GetLength(0), out k);
+            InputNumberInt("Введите K:", matrix.GetLength(0), out k);
             List<List<int>> colors = FindCountOfColors(matrix);
-
 
             if (k < colors.Count)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Не достаточно цветов, чтобы программа могла правильно раскрасить граф");
-                Console.ForegroundColor = ConsoleColor.White;
             }
             if (k == colors.Count) ShowList(colors);
             if (k > colors.Count)
             {
-                int vertex = matrix.GetLength(0);
                 colors = MakeMoreColors(colors, k);
                 ShowList(colors);
             }
+            Console.WriteLine("Для продолжения нажмите любую клавишу, для выхода нажмите 0...");
             if (Console.ReadLine() != "0")
                 Main();
         }

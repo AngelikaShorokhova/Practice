@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_9
 {
@@ -21,9 +22,14 @@ namespace pr_9
             next = null;
             pred = null;
         }
+        [ExcludeFromCodeCoverage]
         public override string ToString()
         {
-            return data.ToString() + Environment.NewLine;
+            return data.ToString() + " ";
+        }
+        public override bool Equals(object obj)
+        {
+            return this.data.Equals(((Point)obj).data);
         }
     }
 }

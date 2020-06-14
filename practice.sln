@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pr_11", "pr_11\pr_11.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pr_12", "pr_12\pr_12.csproj", "{B4C57D76-AA7C-44E2-BCD7-784D3F18FF47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pr_7", "pr_7\pr_7.csproj", "{7E69EA04-D5CE-41E9-A4C2-621C10C5EEDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pr_7", "pr_7\pr_7.csproj", "{7E69EA04-D5CE-41E9-A4C2-621C10C5EEDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

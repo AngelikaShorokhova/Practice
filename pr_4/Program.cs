@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_4
 {
-    class Program
+    public class Program
     {
+        [ExcludeFromCodeCoverage]
         static void InputNumberDouble(string s, out double n)
         {
             bool ok;
@@ -16,14 +18,14 @@ namespace pr_4
                     Console.WriteLine("Введено не число");
             } while (!ok);
         }
-        static double Factorial(int x)
+        public static double Factorial(int x)
         {
             if (x == 0)
                 return 1;
             else
                 return x * Factorial(x - 1);
         }
-        static double Modul(double x)
+        public static double Modul(double x)
         {
             if (x < 0)
                 return -x;
@@ -31,14 +33,14 @@ namespace pr_4
                 return x;
         }
 
-        static double Stepen(int x)
+        public static double Stepen(int x)
         {
             if (x % 2 == 0)
                 return 1;
             else
                 return -1;
         }
-        static double Result(double e, int i)
+        public static double Result(double e, int i)
         {
             double sum = 0;
             double x = Stepen(i) / Factorial(i);
@@ -50,6 +52,7 @@ namespace pr_4
             }
             return sum;
         }
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
             Console.Clear();
@@ -58,6 +61,7 @@ namespace pr_4
             InputNumberDouble("Введите е:", out e);
             int i = 0;
             Console.WriteLine(Result(e, i) + " ");
+            Console.WriteLine("Для продолжения нажмите любую клавишу, для выхода нажмите 0...");
             if (Console.ReadLine() != "0")
                 Main(args);
         }

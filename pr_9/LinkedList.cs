@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_9
 {
@@ -24,7 +25,7 @@ namespace pr_9
                 return lenght;
             }
         }
-
+        [ExcludeFromCodeCoverage]
         public Point End
         {
             get
@@ -39,7 +40,7 @@ namespace pr_9
                 return p;
             }
         }
-
+        [ExcludeFromCodeCoverage]
         public Point Beg
         {
             get { return beg; }
@@ -56,6 +57,7 @@ namespace pr_9
         {
             beg = MakeList2(N);
         }
+        [ExcludeFromCodeCoverage]
         public Point MakeList1(Point beg, int N, int size)
         {
             Point r = beg;
@@ -68,6 +70,7 @@ namespace pr_9
             if (N != size) { MakeList1(r, N, size); }
             return beg;
         }
+        [ExcludeFromCodeCoverage]
         public Point MakeList2(int size)
         {
             int N = 1;
@@ -75,12 +78,43 @@ namespace pr_9
             if (N != size) { beg = MakeList1(beg, N, size); }
             return beg;
         }
-
+        public void Swap()
+        {
+            beg = SwapBeg(beg);
+        }
+        [ExcludeFromCodeCoverage]
+        private Point SwapBeg(Point beg)
+        {
+            Point p = beg;
+            Point temp = new Point(1);
+            while (p.next != null) { p = p.next; }
+            p.next = temp;
+            beg = beg.next;
+            return beg;
+        }
+        [ExcludeFromCodeCoverage]
+        public void Search(Point beg, int N1, int number)
+        {
+            Point p = beg;
+            N1++;
+            if (N1 == number)
+            {
+                Console.WriteLine("Элемент с номером {0} найден: {1}", number, p);
+                return;
+            }
+            if (p.next == null)
+            {
+                Console.WriteLine("Элемент не найден");
+                return;
+            }
+            Search(p.next, N1, number);
+        }
+        [ExcludeFromCodeCoverage]
         public void PrintList()
         {
             if (beg == null)
             {
-                Console.WriteLine("Пустой список");
+                Console.WriteLine("Список пуст");
                 return;
             }
             Point p = beg;
@@ -89,6 +123,7 @@ namespace pr_9
                 Console.Write(p);
                 p = p.next;
             }
+            Console.WriteLine();
         }
     }
 }

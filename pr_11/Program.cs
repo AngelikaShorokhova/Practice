@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_11
 {
-    class Program
+    public class Program
     {
+        [ExcludeFromCodeCoverage]
         static int[] EasyInsertSort(int[] mas)
         {
             int[] mas1 = new int[mas.Length];
@@ -23,6 +25,7 @@ namespace pr_11
             }
             return mas1;
         }
+        [ExcludeFromCodeCoverage]
         static void InputNumberInt(string s, out int n)
         {
             bool ok, ok1 = true;
@@ -38,6 +41,7 @@ namespace pr_11
                     Console.WriteLine("Введено не положительное число");
             } while (!ok || !ok1);
         }
+        [ExcludeFromCodeCoverage]
         static int[] InputNumbers(int l)
         {
             int[] mas = new int[l];
@@ -55,6 +59,7 @@ namespace pr_11
             }
             return mas;
         }
+        [ExcludeFromCodeCoverage]
         static string InputString(string s, int l)
         {
             string str;
@@ -68,7 +73,7 @@ namespace pr_11
             } while (str.Length > l);
             return str;
         }
-        static string Encrypting(int l, int[] numbers, string s)
+        public static string Encrypting(int l, int[] numbers, string s)
         {
             if (s.Length < l)
             {
@@ -82,7 +87,7 @@ namespace pr_11
             }
             return new string(sDop);
         }
-        static string EncryptingBack(int[] numbers, string s)
+        public static string EncryptingBack(int[] numbers, string s)
         {
             char[] sDop = new char[s.Length];
             for (int i = 0; i < numbers.Length; i++)
@@ -91,9 +96,11 @@ namespace pr_11
             }
             return new string(sDop);
         }
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
             Console.WriteLine("Задание №11.");
+            Console.WriteLine("Зафиксируем натуральное k и перестановку чисел 1, ..., k (ее можно задать с помощью последовательности натуральных чисел p1, p2, p3, … pk, в которую входит каждое из чисел 1, …, k). При шифровке в исходном тексте к каждой из последовательных групп по k символов применяется зафиксированная перестановка. Пусть k = 4 и перестановка есть 3, 2, 4, 1. Тогда группа символов s1, s2, s3, s4 заменяется на s3, s2, s4, s1. Если в последней группе меньше четырех символов, то к ней добавляются пробелы. Пользуясь изложенным способом:\nа) зашифровать данный текст;\nб) расшифровать данный текст.");
             int n;
             string s;
             InputNumberInt("Введите длину строки:", out n);

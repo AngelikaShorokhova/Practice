@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 namespace pr_7
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static int Functions(out ArrayList list)
         {
-            Console.WriteLine("Задание №7.");
-            Console.WriteLine("Выписать все булевы функции от 3 аргументов, которые не самодвойственные.Выписать их вектора в лексикографическом порядке.");
-            ArrayList list = new ArrayList();
+            list = new ArrayList();
             string bin; int count = 0;
             for (int i = 0; i < 256; i++)
             {
@@ -26,6 +25,15 @@ namespace pr_7
                     count++;
                 }
             }
+            return count;
+        }
+        [ExcludeFromCodeCoverage]
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Задание №7.");
+            Console.WriteLine("Выписать все булевы функции от 3 аргументов, которые не самодвойственные.Выписать их вектора в лексикографическом порядке.");
+            ArrayList list = new ArrayList();
+            int count = Functions(out list);
             Console.Write("Всего не самодвойственных функций: " + count);
             Console.WriteLine();
             foreach (string s in list)
